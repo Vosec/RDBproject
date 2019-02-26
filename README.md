@@ -1,1 +1,1 @@
-RDB 2019 Kyn Vosecký
+RDB 2019 Kynych Vosecký
