@@ -1,1 +1,0 @@
-INSERT INTO Klienti(email, jmeno, prijmeni)VALUES(on@gmail.com,Ondra,Pasek)
