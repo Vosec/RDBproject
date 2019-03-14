@@ -1,16 +1,16 @@
-package sample.controller;
+package cz.tul.rdb.controller;
 
+import cz.tul.rdb.model.Parser;
 import java.io.File;
+import java.io.InvalidClassException;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.stage.FileChooser;
-import sample.model.Parser;
+import org.springframework.beans.factory.annotation.Autowired;
 
 public class Controller {
-
-  private Parser parser;
 
   @FXML
   Button loadBtn;
@@ -19,12 +19,16 @@ public class Controller {
   @FXML
   Label resultLabel;
 
+  @Autowired
+  private Parser parser;
+
   public Controller() {
     parser = new Parser();
   }
 
   @FXML
-  public void onLoadBtnClick(ActionEvent actionEvent) {
+  public void onLoadBtnClick(ActionEvent actionEvent) throws InvalidClassException {
+
     FileChooser fileChooser = new FileChooser();
     fileChooser.setTitle("Open Resource File");
     FileChooser.ExtensionFilter extFilter = new FileChooser.ExtensionFilter("CSV (*.csv)", "*.csv");

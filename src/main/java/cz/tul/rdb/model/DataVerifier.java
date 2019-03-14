@@ -1,5 +1,8 @@
-package sample.model;
+package cz.tul.rdb.model;
 
+import org.springframework.stereotype.Component;
+
+@Component
 class DataVerifier {
 
   /**
