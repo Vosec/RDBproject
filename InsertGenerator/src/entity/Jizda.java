@@ -51,6 +51,6 @@ public class Jizda implements Entity {
 
   @Override
   public String toString() {
-    return " INSERT INTO Jizda(linka, spz, cislo_rp, cas) VALUES (" + this.linka + "," + this.spz + "," + this.cislo_rp + "," + this.cas + ")";
+    return " INSERT INTO Jizda(linka, spz, cislo_rp, cas) VALUES ('" + this.linka + "','" + this.spz + "','" + this.cislo_rp + "','" + this.cas + "')";
   }
 }

@@ -16,6 +16,7 @@ import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.logging.Logger;
 
 public class Main {
 
@@ -44,12 +45,14 @@ public class Main {
     Mezizastavka mezi1 = new Mezizastavka(lok4.getNazev(), trasa1.getLinka());
 
     Trasy trasa2 = new Trasy("2", lok1.getNazev(), lok2.getNazev());
-    entity.addAll(Arrays.asList(trasa1, trasa2, mezi1));
+    Trasy trasa3 = new Trasy("3", lok1.getNazev(), lok2.getNazev());
+    entity.addAll(Arrays.asList(trasa1, trasa2, mezi1, trasa3));
 
     Ridic r = new Ridic("154a587", "Jan", "Blažek");
     Ridic r1 = new Ridic("154b587", "Tomáš", "Dušek");
     Ridic r2 = new Ridic("154c587", "Petr", "Navrátil");
-    entity.addAll(Arrays.asList(r, r1, r2));
+    Ridic r3 = new Ridic("154c588", "Lukáš", "Vesecký");
+    entity.addAll(Arrays.asList(r, r1, r2, r3));
 
     TypKontaktu tk = new TypKontaktu("email");
     TypKontaktu tk1 = new TypKontaktu("mobil");
@@ -64,10 +67,14 @@ public class Main {
     Timestamp ts = new Timestamp(1254652);
     Timestamp ts1 = new Timestamp(59485465);
     Timestamp ts2 = new Timestamp(1121564);
+    Timestamp ts3 = new Timestamp(11215645);
 
     Jizda j = new Jizda(trasa1.getLinka(), autobus.getSpz(), r.getCislo_rp(), ts);
     Jizda j1 = new Jizda(trasa2.getLinka(), autobus1.getSpz(), r1.getCislo_rp(), ts1);
-    entity.addAll(Arrays.asList(j, j1));
+    Jizda j2 = new Jizda(trasa2.getLinka(), autobus1.getSpz(), r3.getCislo_rp(), ts1);
+    Jizda j3 = new Jizda(trasa1.getLinka(), autobus1.getSpz(), r3.getCislo_rp(), ts1);
+    Jizda j4 = new Jizda(trasa3.getLinka(), autobus1.getSpz(), r3.getCislo_rp(), ts3);
+    entity.addAll(Arrays.asList(j, j1, j2, j3, j4));
 
     Jizdenka jz = new Jizdenka(j.getLinka(), null, j.getCas(), 1);
 
@@ -84,11 +91,14 @@ public class Main {
   }
 
   private static void saveToFile(List<String> inserts) throws FileNotFoundException {
-    PrintWriter pw = new PrintWriter("inserts.txt");
-    for (String insert : inserts) {
-      pw.write(insert + "\n");
+    try (PrintWriter pw = new PrintWriter("inserts.txt")) {
+      for (String insert : inserts) {
+        pw.write(insert + ";\n");
+      }
+      pw.flush();
+    } catch (Exception e) {
+      System.out.println(e.getMessage());
     }
-    pw.flush();
   }
 
 }

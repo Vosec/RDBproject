@@ -8,8 +8,12 @@ import org.springframework.stereotype.Component;
 @Component
 public class Parser {
 
+  private final AutobusDao autobusDao;
+
   @Autowired
-  AutobusDao autobusDao;
+  public Parser(AutobusDao autobusDao) {
+    this.autobusDao = autobusDao;
+  }
 
   /**
    * Parses given CSV file to db entities
@@ -21,7 +25,7 @@ public class Parser {
     //TODO parse csv
     //TODO repair csv
 
-    autobusDao.addAutobus("3L33333", "Mercedes");
+    //autobusDao.addAutobus("3L33333", "Mercedes");
 
     return DataVerifier.verifyData();
   }

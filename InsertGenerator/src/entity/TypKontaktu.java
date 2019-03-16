@@ -18,6 +18,6 @@ public class TypKontaktu implements Entity {
 
   @Override
   public String toString() {
-    return " INSERT INTO TypKontaktu(typ) VALUES (" + this.typ + ")";
+    return " INSERT INTO TypKontaktu(typ) VALUES ('" + this.typ + "')";
   }
 }

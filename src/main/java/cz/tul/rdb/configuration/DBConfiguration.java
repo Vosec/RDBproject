@@ -1,5 +1,6 @@
 package cz.tul.rdb.configuration;
 
+import cz.tul.rdb.controller.Controller;
 import org.hibernate.SessionFactory;
 import org.hibernate.cfg.Configuration;
 import org.springframework.context.annotation.Bean;
@@ -15,5 +16,10 @@ public class DBConfiguration {
   @Bean
   public SessionFactory sessionFactory() {
     return new Configuration().configure("/hibernate/hibernate.cfg.xml").buildSessionFactory();
+  }
+
+  @Bean
+  public Controller controller() {
+    return new Controller();
   }
 }

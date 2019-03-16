@@ -29,6 +29,6 @@ public class Autobus implements Entity {
 
   @Override
   public String toString() {
-    return " INSERT INTO Autobus(spz, znacka) VALUES (" + this.spz + "," + this.znacka + ")";
+    return " INSERT INTO Autobus(spz, znacka) VALUES ('" + this.spz + "','" + this.znacka + "')";
   }
 }

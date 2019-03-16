@@ -22,10 +22,6 @@ public class Controller {
   @Autowired
   private Parser parser;
 
-  public Controller() {
-    parser = new Parser();
-  }
-
   @FXML
   public void onLoadBtnClick(ActionEvent actionEvent) throws InvalidClassException {
 

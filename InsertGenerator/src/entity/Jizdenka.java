@@ -50,6 +50,6 @@ public class Jizdenka implements Entity {
 
   @Override
   public String toString() {
-    return " INSERT INTO Jizdenka(linka, email, cas, cislo) VALUES (" + this.linka + "," + this.email + "," + this.cas + "," + this.cislo + ")";
+    return " INSERT INTO Jizdenka(linka, email, cas, cislo) VALUES ('" + this.linka + "','" + this.email + "','" + this.cas + "','" + this.cislo + "')";
   }
 }

@@ -28,6 +28,6 @@ public class Mezizastavka implements Entity {
 
   @Override
   public String toString() {
-    return " INSERT INTO Mezizastavka(nazev, linka) VALUES (" + this.nazev + "," + this.linka + ")";
+    return " INSERT INTO Mezizastavka(nazev, linka) VALUES ('" + this.nazev + "','" + this.linka + "')";
   }
 }
