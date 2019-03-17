@@ -20,5 +20,5 @@
   </rowConstraints>
   <Button GridPane.columnIndex="1" GridPane.rowIndex="1" mnemonicParsing="false" onAction="#onLoadBtnClick" text="Načíst CSV" fx:id="loadBtn"/>
   <Button GridPane.columnIndex="3" GridPane.rowIndex="1" mnemonicParsing="false" onAction="#onExportBtnClick" text="Exportovat CSV" fx:id="exportBtn"/>
-  <Label GridPane.columnIndex="1" GridPane.rowIndex="2" text="Zde výsledek" fx:id="resultLabel"/>
+  <Label GridPane.columnIndex="1" GridPane.rowIndex="2" text="Původ dat: ?" fx:id="resultLabel"/>
 </GridPane>

@@ -11,7 +11,6 @@ import javafx.stage.FileChooser;
 import org.springframework.beans.factory.annotation.Autowired;
 
 public class Controller {
-
   @FXML
   Button loadBtn;
   @FXML

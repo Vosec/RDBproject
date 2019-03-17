@@ -4,13 +4,13 @@
   "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
 
 <hibernate-mapping>
-  <class name="cz.tul.rdb.entity.Autobus" table="autobus">
+  <class name="cz.tul.rdb.entity.Kontakt" table="kontakt">
 
     <meta attribute="class-description">
-      This class contains the bus detail.
+      This class contains the contact detail.
     </meta>
 
-    <id name="spz" type="string" column="spz" length="50"/>
-    <property name="znacka" column="znacka" type="string" length="50" not-null="true"/>
+    <id name="hodnota" type="string" column="hodnota" length="50"/>
+    <!-- TODO: Property typ a cislo_rp -->
   </class>
 </hibernate-mapping>

@@ -4,13 +4,13 @@
   "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
 
 <hibernate-mapping>
-  <class name="cz.tul.rdb.entity.Autobus" table="autobus">
+  <class name="cz.tul.rdb.entity.Jizda" table="jizda">
 
     <meta attribute="class-description">
-      This class contains the bus detail.
+      This class contains the drive detail.
     </meta>
 
-    <id name="spz" type="string" column="spz" length="50"/>
-    <property name="znacka" column="znacka" type="string" length="50" not-null="true"/>
+    <id name="cas" type="timestamp" column="cas"/>
+    <!-- TODO: linka je PFK, spz a cislo_rú je FK, cas je PK -->
   </class>
 </hibernate-mapping>
