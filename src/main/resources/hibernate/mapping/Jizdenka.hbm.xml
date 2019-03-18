@@ -10,7 +10,10 @@
       This class contains the ticket detail.
     </meta>
 
-    <id name="cislo" type="java.lang.Integer" column="cislo"/>
-    <!-- TODO: linka email cas jsou FK -->
+    <id name="cislo" type="java.math.BigInteger" column="cislo"/>
+    <property name="linka" column="linka" type="string" length="50" not-null="true"/>
+    <property name="email" column="email" type="string" length="50" not-null="false"/>
+    <property name="cas" column="cas" type="timestamp" length="50" not-null="true"/>
+
   </class>
 </hibernate-mapping>

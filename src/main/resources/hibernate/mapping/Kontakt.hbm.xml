@@ -11,6 +11,8 @@
     </meta>
 
     <id name="hodnota" type="string" column="hodnota" length="50"/>
-    <!-- TODO: Property typ a cislo_rp -->
+    <property name="typ" column="typ" type="string" length="50" not-null="true"/>
+    <property name="cislo_rp" column="cislo_rp" type="string" length="50" not-null="true"/>
+
   </class>
 </hibernate-mapping>

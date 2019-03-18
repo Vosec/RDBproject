@@ -10,7 +10,12 @@
       This class contains the between the stop detail.
     </meta>
 
-    <!-- TODO: Many to many? slaba entita how to PFK -->
+    <!-- TODO: Oba jsou PFK -->
+    <composite-id>
+      <key-property name="nazev" column="nazev" type="string" length="50"/>
+      <key-property name="linka" column="linka" type="string" length="50"/>
+    </composite-id>
+
 
   </class>
 </hibernate-mapping>

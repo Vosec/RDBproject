@@ -1,5 +1,6 @@
 package cz.tul.rdb.entity;
 
+import java.math.BigInteger;
 import java.sql.Timestamp;
 
 public class Jizdenka implements Entity {
@@ -7,9 +8,9 @@ public class Jizdenka implements Entity {
   private String linka;
   private String email;
   private Timestamp cas;
-  private Integer cislo;
+  private BigInteger cislo;
 
-  public Jizdenka(String linka, String email, Timestamp cas, Integer cislo) {
+  public Jizdenka(String linka, String email, Timestamp cas, BigInteger cislo) {
     this.linka = linka;
     this.email = email;
     this.cas = cas;
@@ -40,11 +41,11 @@ public class Jizdenka implements Entity {
     this.cas = cas;
   }
 
-  public Integer getCislo() {
+  public BigInteger getCislo() {
     return cislo;
   }
 
-  public void setCislo(Integer cislo) {
+  public void setCislo(BigInteger cislo) {
     this.cislo = cislo;
   }
 
