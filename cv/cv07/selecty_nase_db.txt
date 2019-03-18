@@ -1,0 +1,28 @@
+1. vybrat trasy, které mají mezizastávky
+select t.linka, t.odkud, t.kam from trasy t JOIN mezizastavka m on t.linka = m.linka
+
+2. vybrat trasy, které nemají mezizastávky
+select t.linka, t.odkud, t.kam from trasy t where t.linka not in (SELECT linka from mezizastavka)
+
+3. èíslo øidièe, který jede na lince èíslo 2
+SELECT r.cislo_rp, r.jmeno, r.prijmeni from ridic r join jizda j on r.cislo_rp = j.cislo_rp WHERE j.linka = '2'
+
+4. èíslo øidièe, který nejede na lince èíslo 2, ale nìkam jede
+SELECT r.cislo_rp, r.jmeno, r.prijmeni from ridic r join jizda j on r.cislo_rp = j.cislo_rp WHERE j.linka != '2'
+
+5. èíslo øidièe, který nejede na lince èíslo 2
+SELECT r.cislo_rp, r.jmeno, r.prijmeni from ridic r left join jizda j on r.cislo_rp = j.cislo_rp WHERE j.linka != '2' OR r.cislo_rp not in (SELECT cislo_rp from jizda)
+
+6. èíslo øidièe, který øídí i jinou linku než linku 2 (2 + nìjakou jen pro test - potom smazat z db!)
+SELECT r.cislo_rp, r.jmeno, r.prijmeni from ridic r WHERE r.cislo_rp in (SELECT cislo_rp from jizda WHERE linka = '2') and r.cislo_rp in (SELECT cislo_rp from jizda where linka != '2')
+
+7. øidiè, který jede pouze linkou 2
+SELECT r.cislo_rp, r.jmeno, r.prijmeni from ridic r join jizda j on r.cislo_rp = j.cislo_rp WHERE j.linka = '2' and r.cislo_rp not in (SELECT cislo_rp from jizda where linka != '2')
+
+8. øidiè, který nìkam jede, ale ne linkou 2
+SELECT r.cislo_rp, r.jmeno, r.prijmeni from ridic r join jizda j on r.cislo_rp = j.cislo_rp WHERE j.linka != '2'
+
+9. øidiè který jede alespoò linkou 1 a 2
+SELECT r.cislo_rp, r.jmeno, r.prijmeni from ridic r where r.cislo_rp in (SELECT cislo_rp from jizda where linka = '1') and r.cislo_rp in (SELECT cislo_rp from jizda WHERE linka = '2')
+
+10. øidiè, který jezdí všechny linky
