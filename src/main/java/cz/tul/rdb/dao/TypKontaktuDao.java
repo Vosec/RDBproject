@@ -1,6 +1,6 @@
 package cz.tul.rdb.dao;
 
-import cz.tul.rdb.entity.Autobus;
+import cz.tul.rdb.entity.TypKontaktu;
 import org.hibernate.HibernateException;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
@@ -9,38 +9,37 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 @Component
-public class TypKontaktu {
+public class TypKontaktuDao {
 
   private final SessionFactory sessionFactory;
 
 
   @Autowired
-  public TypKontaktu(SessionFactory sessionFactory) {
+  public TypKontaktuDao(SessionFactory sessionFactory) {
     this.sessionFactory = sessionFactory;
   }
 
   /**
-   * Creates autobus db record
+   * Creates typKontaktu db record
    *
-   * @param spz spy - primary key
-   * @param znacka znacka
+   * @param typ contact type
    * @return primary key
    */
-  public String addAutobus(String spz, String znacka) {
+  public String createTypKontaktu(String typ) {
     Session session = sessionFactory.openSession();
     Transaction tx = null;
 
     try {
       tx = session.beginTransaction();
-      Autobus autobus = new Autobus(spz, znacka);
-      spz = (String) session.save(autobus);
+      TypKontaktu typKontaktu = new TypKontaktu(typ);
+      typ = (String) session.save(typKontaktu);
       tx.commit();
     } catch (HibernateException e) {
-      e.printStackTrace(); //tohle nedělat, mělo by se zalogovat
+      e.printStackTrace();
     } finally {
       session.close();
     }
 
-    return spz;
+    return typ;
   }
 }

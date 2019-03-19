@@ -1,6 +1,6 @@
 package cz.tul.rdb.dao;
 
-import cz.tul.rdb.entity.Autobus;
+import cz.tul.rdb.entity.Znacka;
 import org.hibernate.HibernateException;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
@@ -20,27 +20,26 @@ public class ZnackaDao {
   }
 
   /**
-   * Creates autobus db record
+   * Creates znacka db record
    *
-   * @param spz spy - primary key
-   * @param znacka znacka
+   * @param znacka znacka - primary key
    * @return primary key
    */
-  public String addAutobus(String spz, String znacka) {
+  public String createZnacka(String znacka) {
     Session session = sessionFactory.openSession();
     Transaction tx = null;
 
     try {
       tx = session.beginTransaction();
-      Autobus autobus = new Autobus(spz, znacka);
-      spz = (String) session.save(autobus);
+      Znacka znacka1 = new Znacka(znacka);
+      znacka = (String) session.save(znacka);
       tx.commit();
     } catch (HibernateException e) {
-      e.printStackTrace(); //tohle nedělat, mělo by se zalogovat
+      e.printStackTrace();
     } finally {
       session.close();
     }
 
-    return spz;
+    return znacka;
   }
 }

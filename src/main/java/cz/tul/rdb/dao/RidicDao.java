@@ -1,6 +1,6 @@
 package cz.tul.rdb.dao;
 
-import cz.tul.rdb.entity.Autobus;
+import cz.tul.rdb.entity.Ridic;
 import org.hibernate.HibernateException;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
@@ -20,27 +20,25 @@ public class RidicDao {
   }
 
   /**
-   * Creates autobus db record
+   * Creates ridic db record
    *
-   * @param spz spy - primary key
-   * @param znacka znacka
    * @return primary key
    */
-  public String addAutobus(String spz, String znacka) {
+  public String createRidic(String cislo_rp, String jmeno, String prijmeni) {
     Session session = sessionFactory.openSession();
     Transaction tx = null;
 
     try {
       tx = session.beginTransaction();
-      Autobus autobus = new Autobus(spz, znacka);
-      spz = (String) session.save(autobus);
+      Ridic ridic = new Ridic(cislo_rp, jmeno, prijmeni);
+      cislo_rp = (String) session.save(ridic);
       tx.commit();
     } catch (HibernateException e) {
-      e.printStackTrace(); //tohle nedělat, mělo by se zalogovat
+      e.printStackTrace();
     } finally {
       session.close();
     }
 
-    return spz;
+    return cislo_rp;
   }
 }
