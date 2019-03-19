@@ -26,7 +26,7 @@ public class AutobusDao {
    * @param znacka znacka
    * @return primary key
    */
-  public String addAutobus(String spz, String znacka) {
+  public String createAutobus(String spz, String znacka) {
     Session session = sessionFactory.openSession();
     Transaction tx = null;
 
@@ -36,7 +36,7 @@ public class AutobusDao {
       spz = (String) session.save(autobus);
       tx.commit();
     } catch (HibernateException e) {
-      e.printStackTrace(); //tohle nedělat, mělo by se zalogovat
+      e.printStackTrace();
     } finally {
       session.close();
     }

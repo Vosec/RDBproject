@@ -1,6 +1,5 @@
 package cz.tul.rdb.dao;
 
-import cz.tul.rdb.entity.Autobus;
 import cz.tul.rdb.entity.Jizdenka;
 import org.hibernate.HibernateException;
 import org.hibernate.Session;
@@ -26,10 +25,9 @@ public class JizdenkaDao {
   /**
    * Creates jizdenka db record
    *
-   *
    * @return primary key
    */
-  public BigInteger addJizdenka(String linka, String email, Timestamp cas, BigInteger cislo) {
+  public BigInteger createJizdenka(String linka, String email, Timestamp cas, BigInteger cislo) {
     Session session = sessionFactory.openSession();
     Transaction tx = null;
 

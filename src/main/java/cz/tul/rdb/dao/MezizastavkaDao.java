@@ -1,6 +1,6 @@
 package cz.tul.rdb.dao;
 
-import cz.tul.rdb.entity.Autobus;
+import cz.tul.rdb.entity.Mezizastavka;
 import org.hibernate.HibernateException;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
@@ -22,25 +22,23 @@ public class MezizastavkaDao {
   /**
    * Creates autobus db record
    *
-   * @param spz spy - primary key
-   * @param znacka znacka
    * @return primary key
    */
-  public String addAutobus(String spz, String znacka) {
+  public Mezizastavka createMezizastavka(String nazev, String linka) {
     Session session = sessionFactory.openSession();
     Transaction tx = null;
-
+    Mezizastavka mezizastavka = null;
     try {
       tx = session.beginTransaction();
-      Autobus autobus = new Autobus(spz, znacka);
-      spz = (String) session.save(autobus);
+      mezizastavka = new Mezizastavka(nazev, linka);
+      mezizastavka = (Mezizastavka) session.save(mezizastavka);
       tx.commit();
     } catch (HibernateException e) {
-      e.printStackTrace(); //tohle nedělat, mělo by se zalogovat
+      e.printStackTrace();
     } finally {
       session.close();
     }
 
-    return spz;
+    return mezizastavka;
   }
 }

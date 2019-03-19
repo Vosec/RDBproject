@@ -1,6 +1,6 @@
 package cz.tul.rdb.dao;
 
-import cz.tul.rdb.entity.Autobus;
+import cz.tul.rdb.entity.Klient;
 import org.hibernate.HibernateException;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
@@ -20,27 +20,25 @@ public class KlientDao {
   }
 
   /**
-   * Creates autobus db record
+   * Creates klient db record
    *
-   * @param spz spy - primary key
-   * @param znacka znacka
    * @return primary key
    */
-  public String addAutobus(String spz, String znacka) {
+  public String createKlient(String email, String jmeno, String prijmeni) {
     Session session = sessionFactory.openSession();
     Transaction tx = null;
 
     try {
       tx = session.beginTransaction();
-      Autobus autobus = new Autobus(spz, znacka);
-      spz = (String) session.save(autobus);
+      Klient klient = new Klient(email, jmeno, prijmeni);
+      email = (String) session.save(klient);
       tx.commit();
     } catch (HibernateException e) {
-      e.printStackTrace(); //tohle nedělat, mělo by se zalogovat
+      e.printStackTrace();
     } finally {
       session.close();
     }
 
-    return spz;
+    return email;
   }
 }
