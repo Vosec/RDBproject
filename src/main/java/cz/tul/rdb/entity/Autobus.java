@@ -11,6 +11,9 @@ public class Autobus implements Entity {
     this.znacka = znacka;
   }
 
+  public Autobus() {
+  }
+
   public String getSpz() {
     return spz;
   }

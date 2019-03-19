@@ -28,6 +28,8 @@
     <!-- List of XML mapping files -->
     <mapping resource = "hibernate/mapping/Autobus.hbm.xml"/>
     <mapping class="cz.tul.rdb.entity.Autobus"/>
+    <mapping resource = "hibernate/mapping/Jizda.hbm.xml"/>
+    <mapping class="cz.tul.rdb.entity.Jizda"/>
 
   </session-factory>
 </hibernate-configuration>

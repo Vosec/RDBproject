@@ -1,8 +1,9 @@
 package cz.tul.rdb.entity;
 
+import java.io.Serializable;
 import java.sql.Timestamp;
 
-public class Jizda implements Entity {
+public class Jizda implements Entity, Serializable {
 
   private String linka;
   private String spz;
@@ -14,6 +15,9 @@ public class Jizda implements Entity {
     this.spz = spz;
     this.cislo_rp = cislo_rp;
     this.cas = cas;
+  }
+
+  public Jizda() {
   }
 
   public String getLinka() {
