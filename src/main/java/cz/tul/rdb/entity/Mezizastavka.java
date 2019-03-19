@@ -1,6 +1,8 @@
 package cz.tul.rdb.entity;
 
-public class Mezizastavka implements Entity {
+import java.io.Serializable;
+
+public class Mezizastavka implements Entity, Serializable {
 
   private String nazev;
   private String linka;
@@ -8,6 +10,9 @@ public class Mezizastavka implements Entity {
   public Mezizastavka(String nazev, String linka) {
     this.nazev = nazev;
     this.linka = linka;
+  }
+
+  public Mezizastavka() {
   }
 
   public String getNazev() {

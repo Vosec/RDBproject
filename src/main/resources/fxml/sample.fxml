@@ -1,24 +1,27 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.scene.control.Button?>
+<?import javafx.scene.control.CheckBox?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.layout.ColumnConstraints?>
 <?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.RowConstraints?>
-<GridPane xmlns:fx="http://javafx.com/fxml/1" alignment="center" hgap="10" vgap="10" xmlns="http://javafx.com/javafx/8.0.121" fx:controller="cz.tul.rdb.controller.Controller">
+
+<GridPane alignment="center" hgap="10" prefHeight="82.0" prefWidth="332.0" vgap="10" xmlns="http://javafx.com/javafx/8.0.172-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="cz.tul.rdb.controller.Controller">
   <columnConstraints>
-    <ColumnConstraints/>
-    <ColumnConstraints/>
-    <ColumnConstraints/>
-    <ColumnConstraints/>
+    <ColumnConstraints />
+    <ColumnConstraints />
+    <ColumnConstraints />
+    <ColumnConstraints />
   </columnConstraints>
   <rowConstraints>
-    <RowConstraints/>
-    <RowConstraints/>
-    <RowConstraints/>
-    <RowConstraints/>
+    <RowConstraints />
+    <RowConstraints />
+    <RowConstraints />
+    <RowConstraints />
   </rowConstraints>
-  <Button GridPane.columnIndex="1" GridPane.rowIndex="1" mnemonicParsing="false" onAction="#onLoadBtnClick" text="Načíst CSV" fx:id="loadBtn"/>
-  <Button GridPane.columnIndex="3" GridPane.rowIndex="1" mnemonicParsing="false" onAction="#onExportBtnClick" text="Exportovat CSV" fx:id="exportBtn"/>
-  <Label GridPane.columnIndex="1" GridPane.rowIndex="2" text="Původ dat: ?" fx:id="resultLabel"/>
+  <Button fx:id="loadBtn" mnemonicParsing="false" onAction="#onLoadBtnClick" text="Načíst CSV" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+  <Button fx:id="exportBtn" mnemonicParsing="false" onAction="#onExportBtnClick" text="Exportovat CSV" GridPane.columnIndex="3" GridPane.rowIndex="1" />
+  <Label fx:id="resultLabel" text="Původ dat: ?" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+  <CheckBox mnemonicParsing="false" text="Označkovat data" GridPane.columnIndex="3" GridPane.rowIndex="2" />
 </GridPane>

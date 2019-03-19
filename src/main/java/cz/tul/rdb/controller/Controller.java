@@ -6,6 +6,7 @@ import java.io.InvalidClassException;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
+import javafx.scene.control.CheckBox;
 import javafx.scene.control.Label;
 import javafx.stage.FileChooser;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,6 +18,10 @@ public class Controller {
   Button exportBtn;
   @FXML
   Label resultLabel;
+
+  //CheckBox for data markup choice when loading CSV (we dont always want to markup data :-))
+  @FXML
+  CheckBox choice;
 
   @Autowired
   private Parser parser;
@@ -40,4 +45,5 @@ public class Controller {
   public void onExportBtnClick(ActionEvent actionEvent) {
     //TODO
   }
+
 }
