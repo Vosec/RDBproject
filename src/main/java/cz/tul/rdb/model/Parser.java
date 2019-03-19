@@ -32,9 +32,7 @@ public class Parser {
    */
   public boolean parse(File file) {
     //TODO parse csv
-    //TODO repair csv
 
-    //autobusDao.addAutobus("3L33333", "Mercedes");
     /*SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss.SSS");
     Date parsedDate = null;
     try {
@@ -45,12 +43,11 @@ public class Parser {
     } catch (ParseException e) {
       e.printStackTrace();
     }
-    Timestamp timestamp = new java.sql.Timestamp(parsedDate.getTime());
-
-    jizdaDao.createJizda("456", timestamp, "3L33333", "123456");*/
+    Timestamp timestamp = new java.sql.Timestamp(parsedDate.getTime());*/
 
     List<Jizda> jizdy = jizdaDao.listJizda();
+    //TODO možná kontrolovat i jizdenky timestamp
 
-    return DataVerifier.verifyData();
+    return DataVerifier.verifyData(jizdy);
   }
 }
