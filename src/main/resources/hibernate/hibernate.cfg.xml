@@ -28,8 +28,36 @@
     <!-- List of XML mapping files -->
     <mapping resource = "hibernate/mapping/Autobus.hbm.xml"/>
     <mapping class="cz.tul.rdb.entity.Autobus"/>
+
     <mapping resource = "hibernate/mapping/Jizda.hbm.xml"/>
     <mapping class="cz.tul.rdb.entity.Jizda"/>
+
+    <mapping resource = "hibernate/mapping/Jizdenka.hbm.xml"/>
+    <mapping class="cz.tul.rdb.entity.Jizdenka"/>
+
+    <mapping resource = "hibernate/mapping/Klient.hbm.xml"/>
+    <mapping class="cz.tul.rdb.entity.Klient"/>
+
+    <mapping resource = "hibernate/mapping/Kontakt.hbm.xml"/>
+    <mapping class="cz.tul.rdb.entity.Kontakt"/>
+
+    <mapping resource = "hibernate/mapping/Lokalita.hbm.xml"/>
+    <mapping class="cz.tul.rdb.entity.Lokalita"/>
+
+    <mapping resource = "hibernate/mapping/Mezizastavka.hbm.xml"/>
+    <mapping class="cz.tul.rdb.entity.Mezizastavka"/>
+
+    <mapping resource = "hibernate/mapping/Ridic.hbm.xml"/>
+    <mapping class="cz.tul.rdb.entity.Ridic"/>
+
+    <mapping resource = "hibernate/mapping/Trasy.hbm.xml"/>
+    <mapping class="cz.tul.rdb.entity.Trasy"/>
+
+    <mapping resource = "hibernate/mapping/TypKontaktu.hbm.xml"/>
+    <mapping class="cz.tul.rdb.entity.TypKontaktu"/>
+
+    <mapping resource = "hibernate/mapping/Znacka.hbm.xml"/>
+    <mapping class="cz.tul.rdb.entity.Znacka"/>
 
   </session-factory>
 </hibernate-configuration>
