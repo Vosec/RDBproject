@@ -1,5 +1,6 @@
 package cz.tul.rdb.controller;
 
+import cz.tul.rdb.model.Exporter;
 import cz.tul.rdb.model.Parser;
 import java.io.File;
 import java.io.InvalidClassException;
@@ -26,6 +27,8 @@ public class Controller {
 
   @Autowired
   private Parser parser;
+  @Autowired
+  private Exporter exp;
 
   @FXML
   public void onLoadBtnClick(ActionEvent actionEvent) throws InvalidClassException {
@@ -54,7 +57,13 @@ public class Controller {
   }
 
   public void onExportBtnClick(ActionEvent actionEvent) {
-    //TODO
+      DirectoryChooser directoryChooser = new DirectoryChooser();
+      directoryChooser.setTitle("Choose directory with database files");
+      File selectedDirectory = directoryChooser.showDialog(null);
+      if(selectedDirectory != null) {
+          boolean result = exp.export(selectedDirectory);
+          resultLabel.setText(result ? "Vygenerováno" : "Chyba");
+      }
   }
 
 }
