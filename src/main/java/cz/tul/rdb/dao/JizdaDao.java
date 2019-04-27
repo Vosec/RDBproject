@@ -45,6 +45,24 @@ public class JizdaDao {
     return jizda;
   }
 
+  public Jizda createJizda(Jizda j) {
+    Session session = sessionFactory.openSession();
+    Transaction tx = null;
+    Jizda jizda = null;
+    try {
+      tx = session.beginTransaction();
+      jizda = j;
+      jizda = (Jizda) session.save(jizda);
+      tx.commit();
+    } catch (HibernateException e) {
+      e.printStackTrace();
+    } finally {
+      session.close();
+    }
+
+    return jizda;
+  }
+
   public List<Jizda> listJizda() {
     Session session = sessionFactory.openSession();
     String hql = "FROM Jizda";

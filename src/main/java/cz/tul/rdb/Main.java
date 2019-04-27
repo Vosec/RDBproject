@@ -1,6 +1,7 @@
 package cz.tul.rdb;
 
 import cz.tul.rdb.configuration.DBConfiguration;
+import cz.tul.rdb.dao.JizdaDao;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
