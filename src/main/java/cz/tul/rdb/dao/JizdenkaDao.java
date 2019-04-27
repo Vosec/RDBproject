@@ -44,4 +44,21 @@ public class JizdenkaDao {
 
     return cislo;
   }
+
+  public BigInteger createJizdenka(Jizdenka jizdenka) {
+    Session session = sessionFactory.openSession();
+    Transaction tx = null;
+    BigInteger cislo = null;
+    try {
+      tx = session.beginTransaction();
+      cislo = (BigInteger) session.save(jizdenka);
+      tx.commit();
+    } catch (HibernateException e) {
+      e.printStackTrace();
+    } finally {
+      session.close();
+    }
+
+    return cislo;
+  }
 }

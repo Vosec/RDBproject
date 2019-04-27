@@ -41,4 +41,20 @@ public class MezizastavkaDao {
 
     return mezizastavka;
   }
+
+  public Mezizastavka createMezizastavka(Mezizastavka mezizastavka) {
+    Session session = sessionFactory.openSession();
+    Transaction tx = null;
+    try {
+      tx = session.beginTransaction();
+      mezizastavka = (Mezizastavka) session.save(mezizastavka);
+      tx.commit();
+    } catch (HibernateException e) {
+      e.printStackTrace();
+    } finally {
+      session.close();
+    }
+
+    return mezizastavka;
+  }
 }

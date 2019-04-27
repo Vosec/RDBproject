@@ -41,4 +41,22 @@ public class RidicDao {
 
     return cislo_rp;
   }
+
+  public String createRidic(Ridic ridic) {
+    Session session = sessionFactory.openSession();
+    Transaction tx = null;
+    String cislo_rp = null;
+
+    try {
+      tx = session.beginTransaction();
+      cislo_rp = (String) session.save(ridic);
+      tx.commit();
+    } catch (HibernateException e) {
+      e.printStackTrace();
+    } finally {
+      session.close();
+    }
+
+    return cislo_rp;
+  }
 }

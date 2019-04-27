@@ -12,6 +12,9 @@ public class Kontakt implements Entity {
     this.cislo_rp = cislo_rp;
   }
 
+  public Kontakt() {
+  }
+
   public String getHodnota() {
     return hodnota;
   }

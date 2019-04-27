@@ -42,4 +42,22 @@ public class TypKontaktuDao {
 
     return typ;
   }
+
+  public String createTypKontaktu(TypKontaktu typKontaktu) {
+    Session session = sessionFactory.openSession();
+    Transaction tx = null;
+    String typ = null;
+
+    try {
+      tx = session.beginTransaction();
+      typ = (String) session.save(typKontaktu);
+      tx.commit();
+    } catch (HibernateException e) {
+      e.printStackTrace();
+    } finally {
+      session.close();
+    }
+
+    return typ;
+  }
 }

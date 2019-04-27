@@ -12,6 +12,9 @@ public class Klient implements Entity {
     this.prijmeni = prijmeni;
   }
 
+  public Klient() {
+  }
+
   public String getEmail() {
     return email;
   }

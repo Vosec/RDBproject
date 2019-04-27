@@ -8,6 +8,9 @@ public class Lokalita implements Entity {
     this.nazev = nazev;
   }
 
+  public Lokalita() {
+  }
+
   public String getNazev() {
     return nazev;
   }

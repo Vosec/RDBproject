@@ -12,6 +12,9 @@ public class Trasy implements Entity {
     this.kam = kam;
   }
 
+  public Trasy() {
+  }
+
   public String getLinka() {
     return linka;
   }

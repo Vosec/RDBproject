@@ -12,6 +12,9 @@ public class Ridic implements Entity {
     this.prijmeni = prijmeni;
   }
 
+  public Ridic() {
+  }
+
   public String getCislo_rp() {
     return cislo_rp;
   }

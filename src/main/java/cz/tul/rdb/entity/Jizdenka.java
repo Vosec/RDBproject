@@ -17,6 +17,9 @@ public class Jizdenka implements Entity {
     this.cislo = cislo;
   }
 
+  public Jizdenka() {
+  }
+
   public String getLinka() {
     return linka;
   }

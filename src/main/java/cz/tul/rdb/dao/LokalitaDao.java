@@ -41,4 +41,22 @@ public class LokalitaDao {
 
     return nazev;
   }
+
+  public String createLokalita(Lokalita lokalita) {
+    Session session = sessionFactory.openSession();
+    Transaction tx = null;
+    String nazev = null;
+
+    try {
+      tx = session.beginTransaction();
+      nazev = (String) session.save(lokalita);
+      tx.commit();
+    } catch (HibernateException e) {
+      e.printStackTrace();
+    } finally {
+      session.close();
+    }
+
+    return nazev;
+  }
 }

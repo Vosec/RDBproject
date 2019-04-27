@@ -41,4 +41,22 @@ public class TrasyDao {
 
     return linka;
   }
+
+  public String createTrasy(Trasy trasy) {
+    Session session = sessionFactory.openSession();
+    Transaction tx = null;
+    String linka = null;
+
+    try {
+      tx = session.beginTransaction();
+      linka = (String) session.save(trasy);
+      tx.commit();
+    } catch (HibernateException e) {
+      e.printStackTrace();
+    } finally {
+      session.close();
+    }
+
+    return linka;
+  }
 }

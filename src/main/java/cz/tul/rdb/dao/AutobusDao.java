@@ -43,4 +43,22 @@ public class AutobusDao {
 
     return spz;
   }
+
+  public String createAutobus(Autobus autobus) {
+    Session session = sessionFactory.openSession();
+    Transaction tx = null;
+    String spz = "";
+
+    try {
+      tx = session.beginTransaction();
+      spz = (String) session.save(autobus);
+      tx.commit();
+    } catch (HibernateException e) {
+      e.printStackTrace();
+    } finally {
+      session.close();
+    }
+
+    return spz;
+  }
 }

@@ -8,6 +8,9 @@ public class TypKontaktu implements Entity {
     this.typ = typ;
   }
 
+  public TypKontaktu() {
+  }
+
   public String getTyp() {
     return typ;
   }

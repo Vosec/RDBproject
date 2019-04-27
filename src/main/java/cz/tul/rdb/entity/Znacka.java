@@ -8,6 +8,9 @@ public class Znacka implements Entity {
     this.znacka = znacka;
   }
 
+  public Znacka() {
+  }
+
   public String getZnacka() {
     return znacka;
   }

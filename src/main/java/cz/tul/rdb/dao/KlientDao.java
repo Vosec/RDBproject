@@ -41,4 +41,23 @@ public class KlientDao {
 
     return email;
   }
+
+  public String createKlient(Klient klient) {
+    Session session = sessionFactory.openSession();
+    Transaction tx = null;
+    String email = null;
+
+    try {
+      tx = session.beginTransaction();
+      email = (String) session.save(klient);
+      tx.commit();
+    } catch (HibernateException e) {
+      e.printStackTrace();
+    } finally {
+      session.close();
+    }
+
+    return email;
+  }
+
 }

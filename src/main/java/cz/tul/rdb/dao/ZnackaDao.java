@@ -42,4 +42,21 @@ public class ZnackaDao {
 
     return znacka;
   }
+
+  public String createZnacka(Znacka znacka) {
+    Session session = sessionFactory.openSession();
+    Transaction tx = null;
+    String nazev_znacky = null;
+    try {
+      tx = session.beginTransaction();
+      nazev_znacky = (String) session.save(znacka);
+      tx.commit();
+    } catch (HibernateException e) {
+      e.printStackTrace();
+    } finally {
+      session.close();
+    }
+
+    return nazev_znacky;
+  }
 }

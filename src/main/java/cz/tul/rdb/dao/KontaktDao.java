@@ -41,4 +41,21 @@ public class KontaktDao {
 
     return hodnota;
   }
+
+  public String createKontakt(Kontakt kontakt) {
+    Session session = sessionFactory.openSession();
+    Transaction tx = null;
+    String hodnota = null;
+    try {
+      tx = session.beginTransaction();
+      hodnota = (String) session.save(kontakt);
+      tx.commit();
+    } catch (HibernateException e) {
+      e.printStackTrace();
+    } finally {
+      session.close();
+    }
+
+    return hodnota;
+  }
 }
