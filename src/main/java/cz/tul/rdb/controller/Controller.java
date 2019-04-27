@@ -8,6 +8,7 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.CheckBox;
 import javafx.scene.control.Label;
+import javafx.stage.DirectoryChooser;
 import javafx.stage.FileChooser;
 import org.springframework.beans.factory.annotation.Autowired;
 
@@ -29,17 +30,27 @@ public class Controller {
   @FXML
   public void onLoadBtnClick(ActionEvent actionEvent) throws InvalidClassException {
 
+    /*
     FileChooser fileChooser = new FileChooser();
     fileChooser.setTitle("Open Resource File");
     FileChooser.ExtensionFilter extFilter = new FileChooser.ExtensionFilter("CSV (*.csv)", "*.csv");
     fileChooser.getExtensionFilters().add(extFilter);
 
     File selectedFile = fileChooser.showOpenDialog(null);
-
+     */
+    DirectoryChooser directoryChooser = new DirectoryChooser();
+    directoryChooser.setTitle("Choose directory with database files");
+    File selectedDirectory = directoryChooser.showDialog(null);
+    if(selectedDirectory != null) {
+      boolean result = parser.parse(selectedDirectory);
+      resultLabel.setText(result ? "Naše data" : "Cizí data");
+    }
+    /*
     if (selectedFile != null) {
       boolean result = parser.parse(selectedFile);
       resultLabel.setText(result ? "Naše data" : "Cizí data");
     }
+    */
   }
 
   public void onExportBtnClick(ActionEvent actionEvent) {

@@ -53,105 +53,107 @@ public class Parser {
      * @return DataVerifier result
      */
     public boolean parse(File file) {
-
-        try {
-            List<Autobus> autobusy = parseAutobus(file.getPath());
-            for (Autobus bus: autobusy) {
-                autobusDao.createAutobus(bus);
+        File selectedFile = new File(file.getPath()+"/autobus.csv");
+        if (selectedFile != null) {
+                try {
+                    parseAutobus(selectedFile.getPath());
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
             }
-        } catch (IOException e) {
-            e.printStackTrace();
+        selectedFile = new File(file.getPath()+"/jizdenka.csv");
+        if (selectedFile != null) {
+            try {
+                parseJizdenka(selectedFile.getPath());
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
+        selectedFile = new File(file.getPath()+"/jizda.csv");
+        if (selectedFile != null) {
+            try {
+                List<Jizda> jizdy = parseJizda(selectedFile.getPath());
+                for (Jizda jizda : jizdy) {
+                    jizdaDao.createJizda(jizda);
+                }
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
         }
 
-        try {
-            List<Jizdenka> jizdenky = parseJizdenka(file.getPath());
-            for (Jizdenka jizdenka: jizdenky) {
-                jizdenkaDao.createJizdenka(jizdenka);
+        selectedFile = new File(file.getPath()+"/klient.csv");
+        if (selectedFile != null) {
+            try {
+                parseKlient(selectedFile.getPath());
+            } catch (IOException e) {
+                e.printStackTrace();
             }
-        } catch (IOException e) {
-            e.printStackTrace();
         }
 
-        try {
-            List<Jizda> jizdy = parseJizda(file.getPath());
-            for (Jizda jizda : jizdy) {
-                jizdaDao.createJizda(jizda);
+        selectedFile = new File(file.getPath()+"/kontakt.csv");
+        if (selectedFile != null) {
+            try {
+                parseKontakt(selectedFile.getPath());
+            } catch (IOException e) {
+                e.printStackTrace();
             }
-        } catch (IOException e) {
-            e.printStackTrace();
         }
 
-        try {
-            List<Klient> klienti = parseKlient(file.getPath());
-            for (Klient klient : klienti) {
-                klientDao.createKlient(klient);
+        selectedFile = new File(file.getPath()+"/lokalita.csv");
+        if (selectedFile != null) {
+            try {
+                parseLokalita(selectedFile.getPath());
+            } catch (IOException e) {
+                e.printStackTrace();
             }
-        } catch (IOException e) {
-            e.printStackTrace();
         }
 
-        try {
-            List<Kontakt> kontakty = parseKontakt(file.getPath());
-            for (Kontakt kontakt : kontakty) {
-                kontaktDao.createKontakt(kontakt);
+        selectedFile = new File(file.getPath()+"/mezizastavka.csv");
+        if (selectedFile != null) {
+            try {
+                parseMezizastavka(selectedFile.getPath());
+            } catch (IOException e) {
+                e.printStackTrace();
             }
-        } catch (IOException e) {
-            e.printStackTrace();
         }
 
-        try {
-            List<Lokalita> lokality = parseLokalita(file.getPath());
-            for (Lokalita lokalita : lokality) {
-                lokalitaDao.createLokalita(lokalita);
+        selectedFile = new File(file.getPath()+"/ridic.csv");
+        if (selectedFile != null) {
+            try {
+                parseRidic(selectedFile.getPath());
+            } catch (IOException e) {
+                e.printStackTrace();
             }
-        } catch (IOException e) {
-            e.printStackTrace();
         }
 
-        try {
-            List<Mezizastavka> mezizastavky = parseMezizastavka(file.getPath());
-            for (Mezizastavka mezizastavka : mezizastavky) {
-                mezizastavkaDao.createMezizastavka(mezizastavka);
+        selectedFile = new File(file.getPath()+"/trasy.csv");
+        if (selectedFile != null) {
+            try {
+                parseTrasa(selectedFile.getPath());
+            } catch (IOException e) {
+                e.printStackTrace();
             }
-        } catch (IOException e) {
-            e.printStackTrace();
         }
 
-        try {
-            List<Ridic> ridici = parseRidic(file.getPath());
-            for (Ridic ridic : ridici) {
-                ridicDao.createRidic(ridic);
+        selectedFile = new File(file.getPath()+"/typkontaktu.csv");
+        if (selectedFile != null) {
+            try {
+                parseTypKontaktu(selectedFile.getPath());
+            } catch (IOException e) {
+                e.printStackTrace();
             }
-        } catch (IOException e) {
-            e.printStackTrace();
         }
 
-        try {
-            List<Trasy> trasy= parseTrasa(file.getPath());
-            for (Trasy trasa : trasy) {
-                trasyDao.createTrasy(trasa);
+        selectedFile = new File(file.getPath()+"/znacka.csv");
+        if (selectedFile != null) {
+            try {
+                parseZnacka(selectedFile.getPath());
+            } catch (IOException e) {
+                e.printStackTrace();
             }
-        } catch (IOException e) {
-            e.printStackTrace();
         }
 
-        try {
-            List<TypKontaktu> typyKontaktu= parseTypKontaktu(file.getPath());
-            for (TypKontaktu typKontaktu : typyKontaktu) {
-                typKontaktuDao.createTypKontaktu(typKontaktu);
-            }
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
 
-        try {
-            List<Znacka> znacky= parseZnacka(file.getPath());
-            for (Znacka znacka : znacky) {
-                znackaDao.createZnacka(znacka);
-            }
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
     /*SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss.SSS");
     Date parsedDate = null;
     try {
@@ -187,22 +189,20 @@ public class Parser {
         return jizdy;
     }
 
-    public List<Autobus> parseAutobus(String autobusCSVPath) throws IOException {
-        List<Autobus> autobusy = new ArrayList<>();
+    public void parseAutobus(String autobusCSVPath) throws IOException {
         try (
                 Reader reader = Files.newBufferedReader(Paths.get(autobusCSVPath));
                 CSVReader csvReader = new CSVReader(reader);
         ) {
             String[] nextRecord;
             while ((nextRecord = csvReader.readNext()) != null) {
-                autobusy.add(new Autobus(nextRecord[0], nextRecord[1]));
+                autobusDao.createAutobus(new Autobus(nextRecord[0], nextRecord[1]));
             }
         }
-        return autobusy;
     }
 
-    public List<Jizdenka> parseJizdenka(String jizdenkaCSVPath) throws IOException {
-        List<Jizdenka> jizdenky = new ArrayList<>();
+    public void parseJizdenka(String jizdenkaCSVPath) throws IOException {
+
         try (
                 Reader reader = Files.newBufferedReader(Paths.get(jizdenkaCSVPath));
                 CSVReader csvReader = new CSVReader(reader);
@@ -212,127 +212,110 @@ public class Parser {
             String email;
             while ((nextRecord = csvReader.readNext()) != null) {
                 time = Double.parseDouble(nextRecord[2]) * 1000;
-                if(nextRecord[1].equals("\\N")){
+                if(nextRecord[1].equals("N")){
                     email = "null";
                 }else{
                     email = nextRecord[1];
                 }
-                jizdenky.add(new Jizdenka(nextRecord[0],email,new Timestamp((long) time),BigInteger.valueOf(Long.valueOf(nextRecord[3]))));
+                jizdenkaDao.createJizdenka(new Jizdenka(nextRecord[0],email,new Timestamp((long) time),BigInteger.valueOf(Long.valueOf(nextRecord[3]))));
             }
         }
-        return jizdenky;
     }
 
-    public List<Klient> parseKlient(String klientCSVPath) throws IOException {
-        List<Klient> klienti = new ArrayList<>();
+    public void parseKlient(String klientCSVPath) throws IOException {
         try (
                 Reader reader = Files.newBufferedReader(Paths.get(klientCSVPath));
                 CSVReader csvReader = new CSVReader(reader);
         ) {
             String[] nextRecord;
             while ((nextRecord = csvReader.readNext()) != null) {
-                klienti.add(new Klient(nextRecord[0],nextRecord[1],nextRecord[2]));
+                klientDao.createKlient(new Klient(nextRecord[0],nextRecord[1],nextRecord[2]));
             }
         }
-        return klienti;
     }
 
-    public List<Kontakt> parseKontakt(String kontaktCSVPath) throws IOException {
-        List<Kontakt> kontakty = new ArrayList<>();
+    public void parseKontakt(String kontaktCSVPath) throws IOException {
         try (
                 Reader reader = Files.newBufferedReader(Paths.get(kontaktCSVPath));
                 CSVReader csvReader = new CSVReader(reader);
         ) {
             String[] nextRecord;
             while ((nextRecord = csvReader.readNext()) != null) {
-                kontakty.add(new Kontakt(nextRecord[0],nextRecord[1],nextRecord[2]));
+                kontaktDao.createKontakt(new Kontakt(nextRecord[0],nextRecord[1],nextRecord[2]));
             }
         }
-        return kontakty;
     }
 
-    public List<Lokalita> parseLokalita(String lokalitaCSVPath) throws IOException {
-        List<Lokalita> lokality = new ArrayList<>();
+    public void parseLokalita(String lokalitaCSVPath) throws IOException {
         try (
                 Reader reader = Files.newBufferedReader(Paths.get(lokalitaCSVPath));
                 CSVReader csvReader = new CSVReader(reader);
         ) {
             String[] nextRecord;
             while ((nextRecord = csvReader.readNext()) != null) {
-                lokality.add(new Lokalita(nextRecord[0]));
+                lokalitaDao.createLokalita(new Lokalita(nextRecord[0]));
             }
         }
-        return lokality;
     }
 
-    public List<Mezizastavka> parseMezizastavka(String mezizastavkaCSVPath) throws IOException {
-        List<Mezizastavka> mezizastavky = new ArrayList<>();
+    public void parseMezizastavka(String mezizastavkaCSVPath) throws IOException {
         try (
                 Reader reader = Files.newBufferedReader(Paths.get(mezizastavkaCSVPath));
                 CSVReader csvReader = new CSVReader(reader);
         ) {
             String[] nextRecord;
             while ((nextRecord = csvReader.readNext()) != null) {
-                mezizastavky.add(new Mezizastavka(nextRecord[0],nextRecord[1]));
+                mezizastavkaDao.createMezizastavka(new Mezizastavka(nextRecord[0],nextRecord[1]));
             }
         }
-        return mezizastavky;
     }
 
-    public List<Ridic> parseRidic(String ridicCSVPath) throws IOException {
-        List<Ridic> ridici = new ArrayList<>();
+    public void parseRidic(String ridicCSVPath) throws IOException {
         try (
                 Reader reader = Files.newBufferedReader(Paths.get(ridicCSVPath));
                 CSVReader csvReader = new CSVReader(reader);
         ) {
             String[] nextRecord;
             while ((nextRecord = csvReader.readNext()) != null) {
-                ridici.add(new Ridic(nextRecord[0],nextRecord[1],nextRecord[2]));
+                ridicDao.createRidic(new Ridic(nextRecord[0],nextRecord[1],nextRecord[2]));
             }
         }
-        return ridici;
     }
 
-    public List<Trasy> parseTrasa(String trasaCSVPath) throws IOException {
-        List<Trasy> trasy = new ArrayList<>();
+    public void parseTrasa(String trasaCSVPath) throws IOException {
         try (
                 Reader reader = Files.newBufferedReader(Paths.get(trasaCSVPath));
                 CSVReader csvReader = new CSVReader(reader);
         ) {
             String[] nextRecord;
             while ((nextRecord = csvReader.readNext()) != null) {
-                trasy.add(new Trasy(nextRecord[0],nextRecord[1],nextRecord[2]));
+                trasyDao.createTrasy(new Trasy(nextRecord[0],nextRecord[1],nextRecord[2]));
             }
         }
-        return trasy;
     }
 
-    public List<TypKontaktu> parseTypKontaktu(String typKontaktuCSVPath) throws IOException {
-        List<TypKontaktu> typyKontaktu = new ArrayList<>();
+    public void parseTypKontaktu(String typKontaktuCSVPath) throws IOException {
         try (
                 Reader reader = Files.newBufferedReader(Paths.get(typKontaktuCSVPath));
                 CSVReader csvReader = new CSVReader(reader);
         ) {
             String[] nextRecord;
             while ((nextRecord = csvReader.readNext()) != null) {
-                typyKontaktu.add(new TypKontaktu(nextRecord[0]));
+                typKontaktuDao.createTypKontaktu(new TypKontaktu(nextRecord[0]));
             }
         }
-        return typyKontaktu;
     }
 
-    public List<Znacka> parseZnacka(String znackaCSVPath) throws IOException {
-        List<Znacka> znacky = new ArrayList<>();
+    public void parseZnacka(String znackaCSVPath) throws IOException {
         try (
                 Reader reader = Files.newBufferedReader(Paths.get(znackaCSVPath));
                 CSVReader csvReader = new CSVReader(reader);
         ) {
             String[] nextRecord;
             while ((nextRecord = csvReader.readNext()) != null) {
-                znacky.add(new Znacka(nextRecord[0]));
+                znackaDao.createZnacka(new Znacka(nextRecord[0]));
             }
         }
-        return znacky;
     }
 
 }
