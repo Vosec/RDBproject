@@ -21,6 +21,6 @@ public class Lokalita implements Entity {
 
   @Override
   public String toString() {
-    return " INSERT INTO Lokalita(nazev) VALUES (" + this.nazev + ")";
+    return this.nazev + "\n";
   }
 }

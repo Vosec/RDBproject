@@ -58,25 +58,148 @@ public class Exporter {
                 e.printStackTrace();
             }
         }
+
+        selectedFile = new File(file.getPath() + "/autobus.csv");
+        if (selectedFile.exists()) {
+            exportObject(selectedFile, autobusDao.listAutobus());
+        } else {
+            try {
+                selectedFile.createNewFile();
+                exportObject(selectedFile, autobusDao.listAutobus());
+            } catch (IOException e) {
+                success = false;
+                e.printStackTrace();
+            }
+        }
+
+        selectedFile = new File(file.getPath() + "/jizdenka.csv");
+        if (selectedFile.exists()) {
+            exportObject(selectedFile, jizdenkaDao.listJizdenka());
+        } else {
+            try {
+                selectedFile.createNewFile();
+                exportObject(selectedFile, jizdenkaDao.listJizdenka());
+            } catch (IOException e) {
+                success = false;
+                e.printStackTrace();
+            }
+        }
+
+       selectedFile = new File(file.getPath() + "/klient.csv");
+        if (selectedFile.exists()) {
+            exportObject(selectedFile, klientDao.listKlient());
+        } else {
+            try {
+                selectedFile.createNewFile();
+                exportObject(selectedFile, klientDao.listKlient());
+            } catch (IOException e) {
+                success = false;
+                e.printStackTrace();
+            }
+        }
+
+        selectedFile = new File(file.getPath() + "/kontakt.csv");
+        if (selectedFile.exists()) {
+            exportObject(selectedFile, kontaktDao.listKontakt());
+        } else {
+            try {
+                selectedFile.createNewFile();
+                exportObject(selectedFile, kontaktDao.listKontakt());
+            } catch (IOException e) {
+                success = false;
+                e.printStackTrace();
+            }
+        }
+
+        selectedFile = new File(file.getPath() + "/lokalita.csv");
+        if (selectedFile.exists()) {
+            exportObject(selectedFile, lokalitaDao.listLokalita());
+        } else {
+            try {
+                selectedFile.createNewFile();
+                exportObject(selectedFile, lokalitaDao.listLokalita());
+            } catch (IOException e) {
+                success = false;
+                e.printStackTrace();
+            }
+        }
+
+        selectedFile = new File(file.getPath() + "/mezizastavka.csv");
+        if (selectedFile.exists()) {
+            exportObject(selectedFile, mezizastavkaDao.listMezizastavka());
+        } else {
+            try {
+                selectedFile.createNewFile();
+                exportObject(selectedFile, mezizastavkaDao.listMezizastavka());
+            } catch (IOException e) {
+                success = false;
+                e.printStackTrace();
+            }
+        }
+
+       selectedFile = new File(file.getPath() + "/ridic.csv");
+        if (selectedFile.exists()) {
+            exportObject(selectedFile, ridicDao.listRidic());
+        } else {
+            try {
+                selectedFile.createNewFile();
+                exportObject(selectedFile, ridicDao.listRidic());
+            } catch (IOException e) {
+                success = false;
+                e.printStackTrace();
+            }
+        }
+
+        selectedFile = new File(file.getPath() + "/trasy.csv");
+        if (selectedFile.exists()) {
+            exportObject(selectedFile, trasyDao.listTrasy());
+        } else {
+            try {
+                selectedFile.createNewFile();
+                exportObject(selectedFile, trasyDao.listTrasy());
+            } catch (IOException e) {
+                success = false;
+                e.printStackTrace();
+            }
+        }
+
+        selectedFile = new File(file.getPath() + "/typkontaktu.csv");
+        if (selectedFile.exists()) {
+            exportObject(selectedFile, typKontaktuDao.listTypKontaktu());
+        } else {
+            try {
+                selectedFile.createNewFile();
+                exportObject(selectedFile, typKontaktuDao.listTypKontaktu());
+            } catch (IOException e) {
+                success = false;
+                e.printStackTrace();
+            }
+        }
+
+        selectedFile = new File(file.getPath() + "/znacka.csv");
+        if (selectedFile.exists()) {
+            exportObject(selectedFile, znackaDao.listZnacka());
+        } else {
+            try {
+                selectedFile.createNewFile();
+                exportObject(selectedFile, znackaDao.listZnacka());
+            } catch (IOException e) {
+                success = false;
+                e.printStackTrace();
+            }
+        }
         return success;
     }
 
     public <T> void exportObject(File file, List<T> objects) {
-        try (
-                Writer writer = Files.newBufferedWriter(Paths.get(file.getPath()));
-        ) {
-            StatefulBeanToCsv<T> beanToCsv = new StatefulBeanToCsvBuilder(writer)
-                    .withQuotechar(CSVWriter.NO_QUOTE_CHARACTER)
-                    .build();
-            try {
-                beanToCsv.write(objects);
-            } catch (CsvDataTypeMismatchException e) {
-                e.printStackTrace();
-            } catch (CsvRequiredFieldEmptyException e) {
-                e.printStackTrace();
+        try (FileWriter writer = new FileWriter(file.getPath());
+             BufferedWriter bw = new BufferedWriter(writer)) {
+            for (int i = 0; i < objects.size(); i++) {
+                bw.write(objects.get(i).toString());
             }
+            bw.close();
         } catch (IOException e) {
-            e.printStackTrace();
+            System.err.format("IOException: %s%n", e);
         }
 
 

@@ -2,6 +2,8 @@ package cz.tul.rdb.entity;
 
 import java.io.Serializable;
 import java.sql.Timestamp;
+import java.util.Calendar;
+import java.util.Locale;
 
 public class Jizda implements Entity, Serializable {
 
@@ -55,6 +57,9 @@ public class Jizda implements Entity, Serializable {
 
   @Override
   public String toString() {
-    return " INSERT INTO Jizda(linka, spz, cislo_rp, cas) VALUES (" + this.linka + "," + this.spz + "," + this.cislo_rp + "," + this.cas + ")";
+    Calendar calendar = Calendar.getInstance();
+    calendar.setTime(cas);
+    double time = calendar.getTimeInMillis();
+    return this.linka + "," + this.spz + "," + this.cislo_rp + "," +String.format (Locale.ROOT,"%.3f", time/1000.0)+"\n";
   }
 }

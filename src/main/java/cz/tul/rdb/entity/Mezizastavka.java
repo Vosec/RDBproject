@@ -33,6 +33,6 @@ public class Mezizastavka implements Entity, Serializable {
 
   @Override
   public String toString() {
-    return " INSERT INTO Mezizastavka(nazev, linka) VALUES (" + this.nazev + "," + this.linka + ")";
+    return this.nazev + "," + this.linka + "\n";
   }
 }

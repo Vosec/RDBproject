@@ -41,6 +41,6 @@ public class Ridic implements Entity {
 
   @Override
   public String toString() {
-    return " INSERT INTO Ridic(cislo_rp, jmeno, prijmeni) VALUES (" + this.cislo_rp + "," + this.jmeno + "," + this.prijmeni + ")";
+    return this.cislo_rp + "," + this.jmeno + "," + this.prijmeni + "\n";
   }
 }

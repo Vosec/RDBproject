@@ -5,8 +5,11 @@ import org.hibernate.HibernateException;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
+import org.hibernate.query.Query;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
+
+import java.util.List;
 
 @Component
 public class KontaktDao {
@@ -58,4 +61,13 @@ public class KontaktDao {
 
     return hodnota;
   }
+
+    public List<Kontakt> listKontakt() {
+      Session session = sessionFactory.openSession();
+      String hql = "FROM Kontakt";
+      Query query = session.createQuery(hql);
+      List results = query.list();
+      session.close();
+      return results;
+    }
 }

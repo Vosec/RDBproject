@@ -41,6 +41,6 @@ public class Klient implements Entity {
 
   @Override
   public String toString() {
-    return " INSERT INTO Klient(email, jmeno, prijmeni) VALUES (" + this.email + "," + this.jmeno + "," + this.prijmeni + ")";
+    return this.email + "," + this.jmeno + "," + this.prijmeni + "\n";
   }
 }

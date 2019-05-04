@@ -5,11 +5,13 @@ import org.hibernate.HibernateException;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
+import org.hibernate.query.Query;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import java.math.BigInteger;
 import java.sql.Timestamp;
+import java.util.List;
 
 @Component
 public class JizdenkaDao {
@@ -61,4 +63,13 @@ public class JizdenkaDao {
 
     return cislo;
   }
+
+    public List<Jizdenka> listJizdenka() {
+      Session session = sessionFactory.openSession();
+      String hql = "FROM Jizdenka";
+      Query query = session.createQuery(hql);
+      List results = query.list();
+      session.close();
+      return results;
+    }
 }

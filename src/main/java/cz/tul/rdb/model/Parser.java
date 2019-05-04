@@ -54,7 +54,7 @@ public class Parser {
      */
     public boolean parse(File file) {
         File selectedFile = new File(file.getPath()+"/autobus.csv");
-        if (selectedFile != null) {
+        if (selectedFile.exists()) {
                 try {
                     parseAutobus(selectedFile.getPath());
                 } catch (IOException e) {
@@ -62,7 +62,7 @@ public class Parser {
                 }
             }
         selectedFile = new File(file.getPath()+"/jizdenka.csv");
-        if (selectedFile != null) {
+        if (selectedFile.exists()) {
             try {
                 parseJizdenka(selectedFile.getPath());
             } catch (IOException e) {
@@ -70,7 +70,7 @@ public class Parser {
             }
         }
         selectedFile = new File(file.getPath()+"/jizda.csv");
-        if (selectedFile != null) {
+        if (selectedFile.exists()) {
             try {
                 List<Jizda> jizdy = parseJizda(selectedFile.getPath());
                 for (Jizda jizda : jizdy) {
@@ -82,7 +82,7 @@ public class Parser {
         }
 
         selectedFile = new File(file.getPath()+"/klient.csv");
-        if (selectedFile != null) {
+        if (selectedFile.exists()) {
             try {
                 parseKlient(selectedFile.getPath());
             } catch (IOException e) {
@@ -91,7 +91,7 @@ public class Parser {
         }
 
         selectedFile = new File(file.getPath()+"/kontakt.csv");
-        if (selectedFile != null) {
+        if (selectedFile.exists()) {
             try {
                 parseKontakt(selectedFile.getPath());
             } catch (IOException e) {
@@ -100,7 +100,7 @@ public class Parser {
         }
 
         selectedFile = new File(file.getPath()+"/lokalita.csv");
-        if (selectedFile != null) {
+        if (selectedFile.exists()) {
             try {
                 parseLokalita(selectedFile.getPath());
             } catch (IOException e) {
@@ -109,7 +109,7 @@ public class Parser {
         }
 
         selectedFile = new File(file.getPath()+"/mezizastavka.csv");
-        if (selectedFile != null) {
+        if (selectedFile.exists()) {
             try {
                 parseMezizastavka(selectedFile.getPath());
             } catch (IOException e) {
@@ -118,7 +118,7 @@ public class Parser {
         }
 
         selectedFile = new File(file.getPath()+"/ridic.csv");
-        if (selectedFile != null) {
+        if (selectedFile.exists()) {
             try {
                 parseRidic(selectedFile.getPath());
             } catch (IOException e) {
@@ -127,7 +127,7 @@ public class Parser {
         }
 
         selectedFile = new File(file.getPath()+"/trasy.csv");
-        if (selectedFile != null) {
+        if (selectedFile.exists()) {
             try {
                 parseTrasa(selectedFile.getPath());
             } catch (IOException e) {
@@ -136,7 +136,7 @@ public class Parser {
         }
 
         selectedFile = new File(file.getPath()+"/typkontaktu.csv");
-        if (selectedFile != null) {
+        if (selectedFile.exists()) {
             try {
                 parseTypKontaktu(selectedFile.getPath());
             } catch (IOException e) {
@@ -145,7 +145,7 @@ public class Parser {
         }
 
         selectedFile = new File(file.getPath()+"/znacka.csv");
-        if (selectedFile != null) {
+        if (selectedFile.exists()) {
             try {
                 parseZnacka(selectedFile.getPath());
             } catch (IOException e) {

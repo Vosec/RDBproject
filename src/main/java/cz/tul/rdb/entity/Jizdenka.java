@@ -2,6 +2,8 @@ package cz.tul.rdb.entity;
 
 import java.math.BigInteger;
 import java.sql.Timestamp;
+import java.util.Calendar;
+import java.util.Locale;
 
 public class Jizdenka implements Entity {
 
@@ -54,6 +56,13 @@ public class Jizdenka implements Entity {
 
   @Override
   public String toString() {
-    return " INSERT INTO Jizdenka(linka, email, cas, cislo) VALUES (" + this.linka + "," + this.email + "," + this.cas + "," + this.cislo + ")";
+    Calendar calendar = Calendar.getInstance();
+    calendar.setTime(cas);
+    double time = calendar.getTimeInMillis();
+    if(this.email.equals("null")){
+      email = "\\N";
+    }
+
+    return  this.linka + "," + this.email + "," + String.format (Locale.ROOT,"%.3f", time/1000.0) + "," + this.cislo + "\n";
   }
 }

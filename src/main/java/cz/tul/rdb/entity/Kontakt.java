@@ -41,6 +41,6 @@ public class Kontakt implements Entity {
 
   @Override
   public String toString() {
-    return " INSERT INTO Kontakt(hodnota, typ, cislo_rp) VALUES (" + this.hodnota + "," + this.typ + "," + this.cislo_rp + ")";
+    return this.hodnota + "," + this.typ + "," + this.cislo_rp + "\n";
   }
 }

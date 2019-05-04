@@ -21,6 +21,6 @@ public class Znacka implements Entity {
 
   @Override
   public String toString() {
-    return " INSERT INTO Znacka(znacka) VALUES (" + this.znacka + ")";
+    return this.znacka + "\n";
   }
 }

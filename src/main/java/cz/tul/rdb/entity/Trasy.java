@@ -41,6 +41,6 @@ public class Trasy implements Entity {
 
   @Override
   public String toString() {
-    return " INSERT INTO Trasy(linka, odkud, kam) VALUES (" + this.linka + "," + this.odkud + "," + this.kam + ")";
+    return this.linka + "," + this.odkud + "," + this.kam + "\n";
   }
 }
