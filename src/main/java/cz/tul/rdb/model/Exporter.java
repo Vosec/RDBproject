@@ -13,6 +13,12 @@ import org.springframework.stereotype.Component;
 import java.io.*;
 import java.nio.file.Files;
 import java.nio.file.Paths;
+
+import java.sql.Timestamp;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 @Component
@@ -44,15 +50,24 @@ public class Exporter {
         this.znackaDao = znackaDao;
     }
 
-    public boolean export(File file) {
+    public boolean export(File file, boolean tagging) {
         boolean success = true;
         File selectedFile = new File(file.getPath() + "/jizda.csv");
         if (selectedFile.exists()) {
-            exportObject(selectedFile, jizdaDao.listJizda());
+            if (tagging)
+                exportObject(selectedFile, tagJizdy(jizdaDao.listJizda()));
+            else {
+                exportObject(selectedFile, jizdaDao.listJizda());
+            }
+
         } else {
             try {
                 selectedFile.createNewFile();
-                exportObject(selectedFile, jizdaDao.listJizda());
+                if (tagging)
+                    exportObject(selectedFile, tagJizdy(jizdaDao.listJizda()));
+                else {
+                    exportObject(selectedFile, jizdaDao.listJizda());
+                }
             } catch (IOException e) {
                 success = false;
                 e.printStackTrace();
@@ -85,7 +100,7 @@ public class Exporter {
             }
         }
 
-       selectedFile = new File(file.getPath() + "/klient.csv");
+        selectedFile = new File(file.getPath() + "/klient.csv");
         if (selectedFile.exists()) {
             exportObject(selectedFile, klientDao.listKlient());
         } else {
@@ -137,7 +152,7 @@ public class Exporter {
             }
         }
 
-       selectedFile = new File(file.getPath() + "/ridic.csv");
+        selectedFile = new File(file.getPath() + "/ridic.csv");
         if (selectedFile.exists()) {
             exportObject(selectedFile, ridicDao.listRidic());
         } else {
@@ -201,8 +216,29 @@ public class Exporter {
         } catch (IOException e) {
             System.err.format("IOException: %s%n", e);
         }
+    }
 
+    public List<Jizda> tagJizdy(List<Jizda> jizdy) {
+        SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss.SSSSSS");
+        Date parsedDate = null;
+        List<Jizda> tagged = new ArrayList<Jizda>();
 
+        for (Jizda j : jizdy) {
+            try {
+                parsedDate = dateFormat.parse(j.getCas().toString());
+                if (parsedDate.getMinutes() % 10 == 0) {
+                    parsedDate.setSeconds(7 * (parsedDate.getMinutes() / 10));
+                    j.setCas(new Timestamp(parsedDate.getTime()));
+                    tagged.add(j);
+                } else {
+                    tagged.add(j);
+                }
+            } catch (ParseException e) {
+                e.printStackTrace();
+            }
+        }
+        return tagged;
     }
 }
+
 

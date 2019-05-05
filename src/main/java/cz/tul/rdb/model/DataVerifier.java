@@ -32,7 +32,8 @@ class DataVerifier {
         notTaggedCount++;
       }
     }
-
+    threshold = (int)(jizdy.size()*0.3);
+    System.out.println(notTaggedCount);
     return (jizdy.size() - (ourEntityCount + notTaggedCount)) < threshold;
   }
 }

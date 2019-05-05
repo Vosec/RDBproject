@@ -153,19 +153,6 @@ public class Parser {
             }
         }
 
-
-    /*SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss.SSS");
-    Date parsedDate = null;
-    try {
-      parsedDate = dateFormat.parse("2019-03-19 11:30:00.000");
-      if (parsedDate.getMinutes()%10 == 0) {
-        parsedDate.setSeconds(7*(int)(parsedDate.getMinutes()/10));
-      }
-    } catch (ParseException e) {
-      e.printStackTrace();
-    }
-    Timestamp timestamp = new java.sql.Timestamp(parsedDate.getTime());*/
-
         List<Jizda> jizdy = jizdaDao.listJizda();
         //TODO možná kontrolovat i jizdenky timestamp
 

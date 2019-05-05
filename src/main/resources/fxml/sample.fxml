@@ -23,5 +23,5 @@
   <Button fx:id="loadBtn" mnemonicParsing="false" onAction="#onLoadBtnClick" text="Načíst CSV" GridPane.columnIndex="1" GridPane.rowIndex="1" />
   <Button fx:id="exportBtn" mnemonicParsing="false" onAction="#onExportBtnClick" text="Exportovat CSV" GridPane.columnIndex="3" GridPane.rowIndex="1" />
   <Label fx:id="resultLabel" text="Původ dat: ?" GridPane.columnIndex="1" GridPane.rowIndex="2" />
-  <CheckBox mnemonicParsing="false" text="Označkovat data" GridPane.columnIndex="3" GridPane.rowIndex="2" />
+  <CheckBox fx:id="choice" mnemonicParsing="false" text="Označkovat data" GridPane.columnIndex="3" GridPane.rowIndex="2" />
 </GridPane>

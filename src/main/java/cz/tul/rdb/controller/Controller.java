@@ -61,7 +61,7 @@ public class Controller {
       directoryChooser.setTitle("Choose directory with database files");
       File selectedDirectory = directoryChooser.showDialog(null);
       if(selectedDirectory != null) {
-          boolean result = exp.export(selectedDirectory);
+          boolean result = exp.export(selectedDirectory,choice.isSelected());
           resultLabel.setText(result ? "Vygenerováno" : "Chyba");
       }
   }
